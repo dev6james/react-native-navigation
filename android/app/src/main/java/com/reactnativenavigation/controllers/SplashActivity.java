@@ -33,6 +33,10 @@ public abstract class SplashActivity extends AppCompatActivity {
         LaunchArgs.instance.set(getIntent());
         setSplashLayout();
         IntentDataHandler.saveIntentData(getIntent());
+        //hack: Force app orientation to be portrait
+        if (android.os.Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
     }
 
     @Override
