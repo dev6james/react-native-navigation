@@ -2,7 +2,9 @@ package com.reactnativenavigation.controllers;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -33,6 +35,10 @@ public abstract class SplashActivity extends AppCompatActivity {
         LaunchArgs.instance.set(getIntent());
         setSplashLayout();
         IntentDataHandler.saveIntentData(getIntent());
+        //hack: Force app orientation to be portrait
+        if (android.os.Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
     }
 
     @Override
